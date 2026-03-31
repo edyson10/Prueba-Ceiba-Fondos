@@ -454,15 +454,30 @@ docker build -t btg-funds-api .
 docker run -d -p 27017:27017 --name mongo mongo:7
 ```
 
+### Crea una red Docker
+```bash
+docker network create btg-network
+```
+
+### Levanta Mongo en esa red
+```bash
+docker run -d \
+  --name mongo \
+  --network btg-network \
+  -p 27017:27017 \
+  mongo:7
+```
+
 ### Ejecutar el backend
 ```bash
 docker run -d \
---name btg-funds-api \
--p 8080:8080 \
--e MONGODB_URI="mongodb://localhost:27017/btg_funds" \
--e JWT_SECRET="12345678901234567890123456789012" \
--e JWT_EXPIRATION_MS="86400000" \
-btg-funds-api
+  --name btg-funds-api \
+  --network btg-network \
+  -p 8080:8080 \
+  -e MONGODB_URI="mongodb://mongo:27017/btg_funds" \
+  -e JWT_SECRET="12345678901234567890123456789012" \
+  -e JWT_EXPIRATION_MS="86400000" \
+  btg-funds-api
 ```
 
 ### 17.8 Acceso a la API
