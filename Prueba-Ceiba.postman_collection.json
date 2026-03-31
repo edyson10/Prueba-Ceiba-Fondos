@@ -1,0 +1,247 @@
+{
+  "info": {
+    "_postman_id": "3344bd6a-991f-42b9-a71e-37e2b5cf462a",
+    "name": "Prueba-Ceiba",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7570388"
+  },
+  "item": [
+    {
+      "name": "Registrar cliente",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"fullName\": \"Edyson Leal\",\r\n  \"email\": \"edysonleal@test.com\",\r\n  \"phone\": \"3001234567\",\r\n  \"password\": \"123456\",\r\n  \"notificationPreference\": \"EMAIL\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}auth/register",
+          "host": [
+            "{{baseUrl}}auth"
+          ],
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logueo",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"edysonleal@test.com\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}auth/login",
+          "host": [
+            "{{baseUrl}}auth"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar fondos",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}funds",
+          "host": [
+            "{{baseUrl}}funds"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar datos clientes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}clients/me",
+          "host": [
+            "{{baseUrl}}clients"
+          ],
+          "path": [
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Suscribirse fondo",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"clientId\": \"69cbdfb7bedc465745c48cf4\",\r\n  \"fundId\": \"2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}subscriptions",
+          "host": [
+            "{{baseUrl}}subscriptions"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Historial",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}subscriptions/transactions/69cbdfb7bedc465745c48cf4",
+          "host": [
+            "{{baseUrl}}subscriptions"
+          ],
+          "path": [
+            "transactions",
+            "69cbdfb7bedc465745c48cf4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancelar suscripcion",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"subscriptionId\": \"69cb2331bedc465745c48cf1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}subscriptions/cancel",
+          "host": [
+            "{{baseUrl}}subscriptions"
+          ],
+          "path": [
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
